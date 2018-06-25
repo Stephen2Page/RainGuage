@@ -14,7 +14,7 @@ struct NoaaData: Codable {
 }
 
 struct  Metadata: Codable {
-    let resultSet: ResultSet?
+    let resultset: ResultSet?
 }
 
 struct ResultSet: Codable {
@@ -32,8 +32,44 @@ struct Result: Codable {
     let datatype: String?
     let station: String?
     let attributes: String? // csv
-    let value: Int?
+    let value: Decimal?
 }
+
+func HydrateSampleData() -> Data
+{
+     //create a hydratesampedata
+    let json = """
+    {
+        "metadata": {
+            "resultset": {
+                "offset": 1,
+                "count": 9,
+                "limit": 100
+            }
+        },
+        "results": [
+            {
+            "date": "2018-03-01T00:00:00",
+            "datatype": "AWND",
+            "station": "GHCND:USW00004853",
+            "attributes": ",,W,",
+            "value": 88
+            },
+            {
+            "date": "2018-03-01T00:00:00",
+            "datatype": "PRCP",
+            "station": "GHCND:USW00004853",
+            "attributes": ",,W,",
+            "value": 348
+            }
+        ]
+    }
+    """.data(using: .utf8)!
+    
+    return json
+}
+
+
 
 
 // sample
