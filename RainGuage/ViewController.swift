@@ -8,12 +8,12 @@
 
 import UIKit
 import Foundation
+import CoreLocation
 
 
 class ViewController: UIViewController {
 
     let api = "ziMIGvgahTwfkCfNuNddJzhksloolzEj"
-    let baseURL = URL(string: "https://www.ncdc.noaa.gov/cdo-web/api/v2/")
     
     @IBOutlet weak var dateInput: UIDatePicker!
     @IBOutlet weak var txtZipCode: UITextField!
@@ -33,16 +33,20 @@ class ViewController: UIViewController {
     @IBAction func btnGetRain(_ sender: Any) {
         
         var rainfallAmount = String() //
+        var latLongCoordinates = CLLocationCoordinate2D()
 
         if isStringEmpty(inputValue: txtZipCode.text!) //== true
         {
             return
         }
         
-        let zipCode = txtZipCode.text
+        let zipCode = txtZipCode.text!
         // need to determine station -- Could also use &locationid=ZIP:44114 but need to validate data is available in that zip code
         // OR use request station with extent and datatype parameters
         // Use Google Maps to get extent lat & long
+        
+        latLongCoordinates = GeoLocation().AddressLookup(address: zipCode)
+        
         let station = "&stationid=GHCND:USW00004853" // Burke Lakefront
 
         // create HTTP request retrieving data
