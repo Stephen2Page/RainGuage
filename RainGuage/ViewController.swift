@@ -56,17 +56,14 @@ class ViewController: UIViewController {
         let startDate = dateInput.date.toString(dateFormat: "yyyy-MM-dd")
         let endDate = dateInput.date.toString(dateFormat: "yyyy-MM-dd")
         let dateRange = "&startdate=\(startDate)&enddate=\(endDate)"
-
-//        let limit = "&limit=100" // default is 25. Should only get one result
         
         let parameters = "?" + dataSetId + dataTypeId + dateRange + station + units
-        
         let noaaData = NoaaApi(endpoint: "data").Get(parameters: parameters)
         // Need to validate that we did not get an empty response
-        rainfallAmount = (noaaData.results?[0].value?.description)!
+        rainfallAmount = noaaData.results != nil ? (noaaData.results?[0].value?.description)! : "0"
         self.txtRainfall.text = rainfallAmount + "\""
     }
-    
+
     func isStringEmpty(inputValue:String) -> Bool
     {
         var stringValue = inputValue

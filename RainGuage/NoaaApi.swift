@@ -9,7 +9,6 @@
 import Foundation
 
 class NoaaApi {
-
     let baseUrlString = "https://www.ncdc.noaa.gov/cdo-web/api/v2/"
     let apiToken = "ziMIGvgahTwfkCfNuNddJzhksloolzEj"
     var endpoint = String()
