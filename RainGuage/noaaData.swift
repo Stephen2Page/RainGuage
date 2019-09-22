@@ -9,8 +9,15 @@
 import Foundation
 
 struct NoaaData: Codable {
-    let metadata: Metadata
-    let results: [Result]
+    let metadata: Metadata?
+    let results: [Result]?
+    
+    init(metadata: Metadata? = nil,
+        results: [Result]? = nil) {
+        
+        self.metadata = metadata
+        self.results = results
+    }
 }
 
 struct  Metadata: Codable {
@@ -22,10 +29,6 @@ struct ResultSet: Codable {
     let count: Int?
     let limit: Int?
 }
-
-//struct Results: Codable {
-//    let result = [Result]()
-//}
 
 struct Result: Codable {
     let date: String? // ISO format

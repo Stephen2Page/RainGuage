@@ -16,6 +16,7 @@
 		743E80E61F5C88A700D8160C /* Scratch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743E80E51F5C88A700D8160C /* Scratch.swift */; };
 		74965E712071762B005B1CB9 /* noaaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74965E702071762B005B1CB9 /* noaaData.swift */; };
 		74AE4106207037BA0068333B /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AE4105207037BA0068333B /* Date+Extensions.swift */; };
+		74DA18AB2337D1DD007BB928 /* NoaaApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DA18AA2337D1DD007BB928 /* NoaaApi.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		743E80E51F5C88A700D8160C /* Scratch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scratch.swift; sourceTree = "<group>"; };
 		74965E702071762B005B1CB9 /* noaaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = noaaData.swift; sourceTree = "<group>"; };
 		74AE4105207037BA0068333B /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		74DA18AA2337D1DD007BB928 /* NoaaApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoaaApi.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				743E80DF1F535F0300D8160C /* Info.plist */,
 				743E80D71F535F0300D8160C /* RainGuage.xcdatamodeld */,
 				74965E702071762B005B1CB9 /* noaaData.swift */,
+				74DA18AA2337D1DD007BB928 /* NoaaApi.swift */,
 			);
 			path = RainGuage;
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 			files = (
 				743E80E61F5C88A700D8160C /* Scratch.swift in Sources */,
 				743E80D31F535F0300D8160C /* ViewController.swift in Sources */,
+				74DA18AB2337D1DD007BB928 /* NoaaApi.swift in Sources */,
 				74965E712071762B005B1CB9 /* noaaData.swift in Sources */,
 				743E80D11F535F0300D8160C /* AppDelegate.swift in Sources */,
 				74AE4106207037BA0068333B /* Date+Extensions.swift in Sources */,
