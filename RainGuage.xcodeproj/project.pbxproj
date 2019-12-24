@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		743E80D11F535F0300D8160C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743E80D01F535F0300D8160C /* AppDelegate.swift */; };
-		743E80D31F535F0300D8160C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743E80D21F535F0300D8160C /* ViewController.swift */; };
+		743E80D31F535F0300D8160C /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743E80D21F535F0300D8160C /* WeatherViewController.swift */; };
 		743E80D61F535F0300D8160C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 743E80D41F535F0300D8160C /* Main.storyboard */; };
 		743E80D91F535F0300D8160C /* RainGuage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 743E80D71F535F0300D8160C /* RainGuage.xcdatamodeld */; };
 		743E80DB1F535F0300D8160C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 743E80DA1F535F0300D8160C /* Assets.xcassets */; };
@@ -23,7 +23,7 @@
 /* Begin PBXFileReference section */
 		743E80CD1F535F0300D8160C /* RainGuage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RainGuage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		743E80D01F535F0300D8160C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		743E80D21F535F0300D8160C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		743E80D21F535F0300D8160C /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		743E80D51F535F0300D8160C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		743E80D81F535F0300D8160C /* RainGuage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RainGuage.xcdatamodel; sourceTree = "<group>"; };
 		743E80DA1F535F0300D8160C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -67,19 +67,51 @@
 			isa = PBXGroup;
 			children = (
 				743E80D01F535F0300D8160C /* AppDelegate.swift */,
-				743E80D21F535F0300D8160C /* ViewController.swift */,
-				743E80D41F535F0300D8160C /* Main.storyboard */,
-				743E80E51F5C88A700D8160C /* Scratch.swift */,
 				743E80DA1F535F0300D8160C /* Assets.xcassets */,
+				7469A76423B28309006109BF /* Controllers */,
 				74AE4107207038980068333B /* Extensions */,
-				743E80DC1F535F0300D8160C /* LaunchScreen.storyboard */,
 				743E80DF1F535F0300D8160C /* Info.plist */,
+				743E80DC1F535F0300D8160C /* LaunchScreen.storyboard */,
+				743E80D41F535F0300D8160C /* Main.storyboard */,
+				7469A76523B28313006109BF /* Model */,
+				7469A76623B2831A006109BF /* ModelHelpers */,
 				743E80D71F535F0300D8160C /* RainGuage.xcdatamodeld */,
-				74965E702071762B005B1CB9 /* noaaData.swift */,
-				74DA18AA2337D1DD007BB928 /* NoaaApi.swift */,
-				74DA18AC233811D2007BB928 /* GeoLocation.swift */,
+				743E80E51F5C88A700D8160C /* Scratch.swift */,
+				7469A76323B282FD006109BF /* Views */,
 			);
 			path = RainGuage;
+			sourceTree = "<group>";
+		};
+		7469A76323B282FD006109BF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7469A76423B28309006109BF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				743E80D21F535F0300D8160C /* WeatherViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		7469A76523B28313006109BF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				74DA18AA2337D1DD007BB928 /* NoaaApi.swift */,
+				74965E702071762B005B1CB9 /* noaaData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7469A76623B2831A006109BF /* ModelHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				74DA18AC233811D2007BB928 /* GeoLocation.swift */,
+			);
+			path = ModelHelpers;
 			sourceTree = "<group>";
 		};
 		74AE4107207038980068333B /* Extensions */ = {
@@ -166,7 +198,7 @@
 			files = (
 				74DA18AD233811D2007BB928 /* GeoLocation.swift in Sources */,
 				743E80E61F5C88A700D8160C /* Scratch.swift in Sources */,
-				743E80D31F535F0300D8160C /* ViewController.swift in Sources */,
+				743E80D31F535F0300D8160C /* WeatherViewController.swift in Sources */,
 				74DA18AB2337D1DD007BB928 /* NoaaApi.swift in Sources */,
 				74965E712071762B005B1CB9 /* noaaData.swift in Sources */,
 				743E80D11F535F0300D8160C /* AppDelegate.swift in Sources */,
