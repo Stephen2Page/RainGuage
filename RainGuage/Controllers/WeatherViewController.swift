@@ -61,28 +61,37 @@ class WeatherViewController: UIViewController {
             
             
             
-            // create HTTP request retrieving data
-            // "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GHCND&startdate=2017-08-20&enddate=2017-08-25&stationid=GHCND%3AUSW00004853"
 
-            let dataSetId = "datasetid=GHCND" // Daily Summaries
-            let dataTypeId = "&datatypeid=PRCP" // Percipitation (may also want to look at SNOW)
-            let units = "&units=standard" // This could be set from a settings screen
             
-            // need validatidateion and assembly of dates -- Needs to be date only format 2018-01-16
-            let startDate = self.dateInput.date.toString(dateFormat: "yyyy-MM-dd")
-            let endDate = self.dateInput.date.toString(dateFormat: "yyyy-MM-dd")
-            let dateRange = "&startdate=\(startDate)&enddate=\(endDate)"
-            
-            let parameters = "?" + dataSetId + dataTypeId + dateRange + station + units
-            let noaaData = NoaaApi(endpoint: "data").Get(parameters: parameters)
-            // Need to validate that we did not get an empty response
-            rainfallAmount = noaaData.results != nil ? (noaaData.results?[0].value?.description)! : "0"
-            self.txtRainfall.text = rainfallAmount + "\""
         }
         
 
     }
+    
+    func getRainfall(stationid: String) {
+        // create HTTP request retrieving data
+        // "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GHCND&startdate=2017-08-20&enddate=2017-08-25&stationid=GHCND%3AUSW00004853"
+        var rainfallAmount = String() //
 
+        let dataSetId = "datasetid=GHCND" // Daily Summaries
+        let dataTypeId = "&datatypeid=PRCP" // Percipitation (may also want to look at SNOW)
+        let units = "&units=standard" // This could be set from a settings screen
+        let station = "&stationid=\(stationid)"
+
+        // need validatidateion and assembly of dates -- Needs to be date only format 2018-01-16
+        let startDate = self.dateInput.date.toString(dateFormat: "yyyy-MM-dd")
+        let endDate = self.dateInput.date.toString(dateFormat: "yyyy-MM-dd")
+        let dateRange = "&startdate=\(startDate)&enddate=\(endDate)"
+
+        let parameters = "?" + dataSetId + dataTypeId + dateRange + station + units
+        let noaaData = NoaaApi(endpoint: "data").Get(parameters: parameters)
+        // Need to validate that we did not get an empty response
+        rainfallAmount = noaaData.results != nil ? (noaaData.results?[0].value?.description)! : "0"
+        // Truncate to two decimal places
+        self.txtRainfall.text = rainfallAmount + "\""
+    }
+    
+    
     func isStringEmpty(inputValue:String) -> Bool
     {
         var stringValue = inputValue
