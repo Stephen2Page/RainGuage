@@ -36,6 +36,16 @@ struct Result: Codable {
     let station: String?
     let attributes: String? // csv
     let value: Decimal?
+    
+    let elevation: Double??
+    let mindate: String?
+    let maxdate: String?
+    let latitude: Double?
+    let name: String?
+    let datacoverage: Double?
+    let id: String?
+    let elevationUnit: String?
+    let longitude: Double?
 }
 
 func HydrateSampleData() -> Data

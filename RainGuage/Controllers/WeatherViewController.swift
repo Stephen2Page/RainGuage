@@ -12,8 +12,6 @@ import CoreLocation
 
 
 class WeatherViewController: UIViewController {
-
-    let api = "ziMIGvgahTwfkCfNuNddJzhksloolzEj"
     
     @IBOutlet weak var dateInput: UIDatePicker!
     @IBOutlet weak var txtZipCode: UITextField!
@@ -22,6 +20,7 @@ class WeatherViewController: UIViewController {
     
     var locationManager: CLLocationManager?
     var currentLocation: CLLocationCoordinate2D!
+    var offsetDistance: Double = 20000 // in meters
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +36,6 @@ class WeatherViewController: UIViewController {
     
     @IBAction func btnGetRain(_ sender: Any) {
         
-        var rainfallAmount = String() //
         var latLongCoordinates = CLLocationCoordinate2D()
 
         if isStringEmpty(inputValue: txtZipCode.text!) //== true
@@ -46,27 +44,49 @@ class WeatherViewController: UIViewController {
         }
         
         let zipCode = txtZipCode.text!  // Need to verify this is a zipcode only
-        // need to determine station -- Could also use &locationid=ZIP:44114 but need to validate data is available in that zip code
-        // OR use request station with extent and datatype parameters
-        // Use Google Maps to get extent lat & long
-        
+
         // checkLocationAuth() // needed for using location service
 
         GeoLocation().AddressLookup(string: zipCode) { coordinates, error in
             latLongCoordinates = coordinates ?? CLLocationCoordinate2D()
-            let offsetCoordinates = GeoLocation().locationWithBearing(bearing: 225, distanceMeters: 1000, origin: latLongCoordinates)
-            
-            let station = "&stationid=GHCND:USW00004853" // Burke Lakefront
-            // create HTTP request to get station
-            
-            
-            
 
+            // Confirm valid coordinates
+            let stationId = self.getStation(origin: latLongCoordinates)
+            self.getRainfall(stationid: stationId)
             
         }
-        
-
     }
+
+    
+    func getStation(origin: CLLocationCoordinate2D) -> String {
+        // create HTTP request for stations
+        // "https://www.ncdc.noaa.gov/cdo-web/api/v2/stations/?datasetid=GHCND&sortfield=datacoverage&sortorder=desc&extent=41.3815552,-81.9000105,41.5815552,-81.7000105"
+        
+        
+        // create HTTP request to get station
+        // need to determine station -- Could also use &locationid=ZIP:44114 but need to validate data is available in that zip code
+        // OR use request station with extent and datatype parameters
+        let dataSetId = "datasetid=GHCND" // Daily Summaries
+        let dataTypeId = "&datatypeid=PRCP" // Percipitation (may also want to look at SNOW)
+        let sortfield = "&sortfield=datacoverage"
+        let sortorder = "&sortorder=desc"
+        let startDate = "&startdate=\(self.dateInput.date.toString(dateFormat: "yyyy-MM-dd"))"
+
+        let swBound: CLLocationCoordinate2D = GeoLocation().locationWithBearing(bearing: 225, distanceMeters: self.offsetDistance, origin: origin)
+        let neBound: CLLocationCoordinate2D = GeoLocation().locationWithBearing(bearing: 45, distanceMeters: self.offsetDistance, origin: origin)
+        let extent: String = "&extent=\(swBound.latitude),\(swBound.longitude),\(neBound.latitude),\(neBound.longitude)"
+        
+        // Probably want to include requested date -7 as the startdate parameter
+        let parameters: String = "?" + dataSetId + dataTypeId + startDate + sortfield + sortorder + extent
+        
+        let noaaStations = NoaaApi(endpoint: "stations").Get(parameters: parameters)
+
+        // Need a better way of choosing the station. Currently sorting on datacoverage
+        // var stationId = "GHCND:USW00004853" // Burke Lakefront
+        let stationId = noaaStations.results != nil ? (noaaStations.results?[0].id)! : ""
+        return stationId
+    }
+    
     
     func getRainfall(stationid: String) {
         // create HTTP request retrieving data
